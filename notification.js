@@ -47,7 +47,9 @@ function initialiseState() {
           subscribe();
           return;
         }
-
+        console.log(subscription);
+        console.log(subscription.endpoint);
+        
         // Keep your server in sync with the latest subscriptionId
         //sendSubscriptionToServer(subscription);
 
@@ -85,9 +87,7 @@ function subscribe() {
         //       window.location.reload();
         //     }
         // });
-        console.log(subscription);
-        console.log(subscription.endpoint);
-
+        
         //return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
@@ -142,31 +142,4 @@ function unsubscribe() {
         console.error('Error thrown while unsubscribing from push messaging.', e);
       });
   });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  if (Notification.permission !== "granted")
-    var sda="";//Notification.requestPermission();
-});
-
-function notifyMe() {
-  if (!Notification) {
-    alert('Desktop notifications not available in your browser. Try Chromium.');
-    return;
-  }
-
-  if (Notification.permission !== "granted")
-    var sdds="";//Notification.requestPermission();
-  else {
-    var notification = new Notification('Notification title', {
-      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-      body: "Hey there! You've been notified!",
-    });
-
-    notification.onclick = function () {
-      window.open("http://stackoverflow.com/a/13328397/1269037");
-    };
-
-  }
-
 }
