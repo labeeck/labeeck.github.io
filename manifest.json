@@ -1,0 +1,11 @@
+{
+  "name": "Push Demo Myavoo",
+  "short_name": "Push demo",
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "393792163958",
+  "gcm_user_visible_only": true,
+  "permissions": [
+    "gcm"
+    ]
+}
