@@ -86,7 +86,7 @@ function subscribe() {
         //     }
         // });
         console.log(subscription);
-        console.log(subscription.subscriptionId);
+        console.log(subscription.endpoint);
 
         //return sendSubscriptionToServer(subscription);
       })
