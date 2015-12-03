@@ -36,7 +36,7 @@ function initialiseState() {
   // We need the service worker registration to check for a subscription
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     // Do we already have a push message subscription?
-    serviceWorkerRegistration.pushManager.getSubscription({ userVisibleOnly: true })  
+    serviceWorkerRegistration.pushManager.getSubscription()
       .then(function(subscription) {
         // Enable any UI which subscribes / unsubscribes from
         // push messages.
@@ -67,7 +67,7 @@ function subscribe() {
   // we process the permission request
 
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-    serviceWorkerRegistration.pushManager.subscribe()
+    serviceWorkerRegistration.pushManager.subscribe({ userVisibleOnly: true })
       .then(function(subscription) {
         // The subscription was successful
         isPushEnabled = true;
@@ -75,16 +75,18 @@ function subscribe() {
         // TODO: Send the subscription.subscriptionId and
         // subscription.endpoint to your server
         // and save it to send a push message at a later date
-        var data = 'sender_id='+subscription.subscriptionId;
-        $.ajax({
-            type: "POST",
-            url: "adddevice",
-            data: data,
-            cache: false,
-            success: function(response){
-              window.location.reload();
-            }
-        });
+        // var data = 'sender_id='+subscription.subscriptionId;
+        // $.ajax({
+        //     type: "POST",
+        //     url: "adddevice",
+        //     data: data,
+        //     cache: false,
+        //     success: function(response){
+        //       window.location.reload();
+        //     }
+        // });
+        console.log(subscription);
+        console.log(subscription.subscriptionId);
 
         //return sendSubscriptionToServer(subscription);
       })
